@@ -2,9 +2,9 @@
 // --------------------
 // DATABASE CONNECTION
 // --------------------
-$host = "localhost";
+$host = "flight-booking-db";
 $user = "root";
-$pass = "";
+$pass = "root";
 $db   = "flight_booking";
 
 $conn = new mysqli($host, $user, $pass, $db);
