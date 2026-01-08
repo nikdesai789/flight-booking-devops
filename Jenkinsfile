@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repo') {
-            steps {
-                git credentialsId: 'github-creds',
-                    url: 'https://github.com/nikdesai789/flight-booking-devops.git'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
@@ -15,9 +9,18 @@ pipeline {
             }
         }
 
+        stage('Stop Old Container') {
+            steps {
+                sh '''
+                docker stop flight-booking || true
+                docker rm flight-booking || true
+                '''
+            }
+        }
+
         stage('Run Docker Container') {
             steps {
-                sh 'docker run -d -p 8082:80 flight-booking-app'
+                sh 'docker run -d --name flight-booking -p 8082:80 flight-booking-app'
             }
         }
     }
