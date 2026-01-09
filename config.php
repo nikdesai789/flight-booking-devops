@@ -7,6 +7,9 @@ $user = "root";
 $pass = "root";
 $db   = "flight_booking";
 
+
+
+
 $conn = new mysqli($host, $user, $pass, $db);
 
 if ($conn->connect_error) {
